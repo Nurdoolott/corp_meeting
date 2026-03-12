@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import MeetingsPage from "./pages/MeetingsPage";
+import MeetingPage from "./pages/MeetingPage";
 
-export default function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/api/health")
-      .then((r) => r.json())
-      .then(setData)
-      .catch(console.error);
-  }, []);
-
+function App() {
   return (
-    <div style={{ padding: 24, fontFamily: "sans-serif" }}>
-      <h1>Corporate Meetings MVP</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <Routes>
+      <Route path="/" element={<MeetingsPage />} />
+      <Route path="/meetings/:id" element={<MeetingPage />} />
+    </Routes>
   );
 }
+
+export default App;
